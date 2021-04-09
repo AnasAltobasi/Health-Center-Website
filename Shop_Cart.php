@@ -136,6 +136,13 @@ if (isset($_POST['remove'])) {
                                                     <h5 class="pt-2 text-success" style="font-size:15px">HEALTH TOOLS</h5>
                                                     <button type="submit" class="btn btn-danger mb-3 mt-3 text-center" name="remove">Remove</button>
                                                 </div>
+                                                <div class="col-md-3 py-5">
+                                                    <div>
+                                                     <button type="button" class="btn bg-light border rounded-circle" onclick="decrementValue()"><i class="fas fa-minus"></i></button>
+                                                        <input type="text" id="number" class="form-control w-25 d-inline"  value="1" >
+                                                    <button type="button"  class="btn bg-light border rounded-circle" onclick="incrementValue()"><i class="fas fa-plus"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>

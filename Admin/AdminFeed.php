@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $query);
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="AdminProfile.php"><i class="fas fa-home"></i>&nbsp; Dashboard</a></li>
-                    <li class="active"><a href="AddTool.php"><i class="fas fa-toolbox"></i>&nbsp; Add a Tools</a></li>
+                    <li class="active"><a href="AdminProduct.php"><i class="fas fa-toolbox"></i>&nbsp; Add a Tools</a></li>
                     <li><a href="AdminLogout.php"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a></li>
                 </ul>
             </nav>
@@ -84,7 +84,7 @@ $result = mysqli_query($conn, $query);
                         <h4>Useful Links</h4>
                         <ul>
                             <li><a href="AdminProfile.php"><i class="fas fa-home"></i>&nbsp; Dashboard</a></li>
-                            <li><a href="AddTool.php"><i class="fas fa-toolbox"></i>&nbsp; Add a Product</a></li>
+                            <li><a href="AdminProduct.php"><i class="fas fa-toolbox"></i>&nbsp; Add a Product</a></li>
                             <li><a href="AddAdmin.php"><i class="fas fa-plus"></i>&nbsp; Add Admin</a></li>
                             <li><a href="Orders.php"><i class="fas fa-box"></i>&nbsp; Orders</a></li>
                             <li><a href="AdminLogout.php"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a></li>

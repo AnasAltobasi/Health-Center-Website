@@ -33,7 +33,6 @@ if(isset($_GET["ID"]) && isset($_GET["control"])){
         }
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

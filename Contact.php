@@ -33,7 +33,6 @@
                 </ul>
             </nav>
         </div>
-        <a href="Shop_Cart.php"><i class="shopCart fas fa-shopping-cart"></i></a>
     </header>
     <!-- End Header -->
 
