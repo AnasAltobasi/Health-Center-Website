@@ -55,8 +55,9 @@ $result = mysqli_query($conn, $query);
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Number Phone</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Number Phone</th>
+                                <th scope="col">Products Selected</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Call Him</th>
                             </tr>
@@ -65,7 +66,7 @@ $result = mysqli_query($conn, $query);
                             <?php
                             if ($result) {
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<tr><td>" . $row['ID'] . "</td><td>" . $row['Username'] . "</td><td>" . $row['Email'] . "</td><td>" . $row['NumberPhone'] . "</td><td>" . $row['TotalPrice'] . "</td><td>" . "<a href=mailto:{$row["Email"]}><button type='button' class='btn btn-info' >Send Email</button></a>" . "</td></tr>";
+                                    echo "<tr><td>" . $row['ID'] . "</td><td>" . $row['Username'] . "</td><td>" . $row['Email'] . "</td><td>" . $row['NumberPhone'] . "</td><td>" . $row['ProductsNames'] . "</td><td>" . $row['TotalPrice'] . "</td><td>" . "<a href=mailto:{$row["Email"]}><button type='button' class='btn btn-info' >Send Email</button></a>" . "</td></tr>";
                                 }
                             }
                             ?>

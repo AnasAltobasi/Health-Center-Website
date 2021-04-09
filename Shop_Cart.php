@@ -19,7 +19,6 @@ if (isset($_POST['remove'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -82,22 +81,23 @@ if (isset($_POST['remove'])) {
 
                     if (isset($_SESSION['cart'])) {
                         $Tool_ID = array_column($_SESSION['cart'], 'Tool_ID');
-
+                        $ItemsName = array_column($_SESSION['ItemsName'], 'Tool_Name');
                         while ($row = mysqli_fetch_assoc($result)) {
                             foreach ($Tool_ID as $id) {
                                 if ($row['ID'] == $id) {
                                     cartElement($row['Image'], $row['ItemName'], $row['Price'],  $id);
-
                                     $total = $total + (int)$row['Price'];
+
+                                    $ItemSelected = $_SESSION['ItemsName'];
                                 }
                             }
                         }
+                        $All_Item = implode(" ,<br> ", $ItemsName);
                     } else {
                         echo '<h5 class="pt-2 text-success text-center" style="font-size: 30px">Cart is Empty</h5>';
                     }
 
                     if (isset($_POST["CheckOut"])) {
-
                         $Name = isset($_POST["Name"]) ? $_POST["Name"] : "";
                         $Email = isset($_POST["Email"]) ? $_POST["Email"] : "";
                         $Phone = isset($_POST["NumberPhone"]) ? $_POST["NumberPhone"] : "";
@@ -113,7 +113,7 @@ if (isset($_POST['remove'])) {
                             $check = false;
                         } elseif ($check) {
 
-                            $query2 = "INSERT INTO orders (Username,Email,NumberPhone,TotalPrice) VALUES ('$Name','$Email','$Phone','$total')";
+                            $query2 = "INSERT INTO orders (Username,Email,NumberPhone,ProductsNames,TotalPrice) VALUES ('$Name','$Email','$Phone','$All_Item','$total')";
                             $result2 = mysqli_query($conn, $query2);
 
                             session_unset();
@@ -182,24 +182,24 @@ if (isset($_POST['remove'])) {
 
                 if ($total > 0) {
                     echo '
-                <form action="Shop_Cart.php" method="post">
-                <div class="form-group col-md-8">
-                    <label class="text-success">Your Name</label>
-                    <input type="text" name="Name" class="form-control">
-                </div>
-                <div class="form-group col-md-8">
-                    <label class="text-success">Your Number Phone</label>
-                    <input type="text" name="NumberPhone" class="form-control">
-                </div>
-                <div class="form-group col-md-8">
-                    <label class="text-success">Your Email</label>
-                    <input type="email" name="Email" class="form-control">
-                </div>
-                <div class="Check_out">
-                    <button type="submit" class="btn btn-success2 mb-4 mt-0" name="CheckOut">Check Out</button>
-                </div>
-            </form>
-               ';
+                            <form action="Shop_Cart.php" method="post">
+                            <div class="form-group col-md-8">
+                                <label class="text-success">Your Name:</label>
+                                <input type="text" name="Name" class="form-control">
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label class="text-success">Your Number Phone:</label>
+                                <input type="text" name="NumberPhone" class="form-control">
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label class="text-success">Your Email:</label>
+                                <input type="email" name="Email" class="form-control">
+                            </div>
+                            <div class="Check_out">
+                                <button type="submit" class="btn btn-success2 mb-4 mt-0" name="CheckOut">Check Out</button>
+                            </div>
+                        </form>
+                    ';
                 };
                 ?>
 

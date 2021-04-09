@@ -13,14 +13,17 @@ $result2 = mysqli_query($conn, $query2);
 
 
 if (isset($_POST['add_to_cart'])) {
-    if (isset($_SESSION['cart'])) {
+    if (isset($_SESSION['cart'])&&isset($_SESSION['ItemsName'])) {
 
         $item_array_id = array_column($_SESSION['cart'], "Tool_ID");
+
+        $item_array_name = array_column($_SESSION['ItemsName'], "Tool_Name");
 
         if (in_array($_POST['Tool_ID'], $item_array_id)) {
             echo "<script>alert('Product is already added in the cart..!')</script>";
             echo "<script>window.location = 'index.php'</script>";
-        } else {
+        } 
+        else {
 
             $count = count($_SESSION['cart']);
             $item_array = array(
@@ -28,14 +31,27 @@ if (isset($_POST['add_to_cart'])) {
             );
 
             $_SESSION['cart'][$count] = $item_array;
+
+            // *******************************************************************
+            $count_items = count($_SESSION['ItemsName']);
+            $item_name_array = array(
+                'Tool_Name' => $_POST['Tool_Name']
+            );
+            $_SESSION['ItemsName'][$count_items] = $item_name_array;
+
         }
     } else {
 
         $item_array = array(
             'Tool_ID' => $_POST['Tool_ID']
         );
+        $item_name_array = array(
+            'Tool_Name' => $_POST['Tool_Name']
+        );
         // Create new session variable
         $_SESSION['cart'][0] = $item_array;
+
+        $_SESSION['ItemsName'][0] = $item_name_array;
     }
 }
 
@@ -184,6 +200,7 @@ if (isset($_POST['add_to_cart'])) {
                                     <a data-toggle="modal" data-target="#' . $row['ModelNumber'] . '" title="View"><i class="far fa-eye"></i></a>
                                     <button type="submit" class="btn btn-success" name="add_to_cart"><i class="fas fa-cart-plus"></i></button>
                                     <input  type="hidden" name="Tool_ID"  value="' . $row['ID'] . '">
+                                    <input  type="hidden" name="Tool_Name"  value="' . $row['ItemName'] . '">
                                   </div>
                              </div>
                              </div>

@@ -41,7 +41,7 @@ if(isset($_GET["ID"]) && isset($_GET["control"])){
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta http-equiv="refresh" content="10;url=AddAdmin.php" />
+    <!-- <meta http-equiv="refresh" content="10;url=AddAdmin.php" /> -->
 
     <title>Add Admin</title>
     <!-- CSS Files -->
@@ -98,7 +98,7 @@ if(isset($_GET["ID"]) && isset($_GET["control"])){
                         </div>
                         <div class="form-group text-left">
                             <label>New Admin Password </label>
-                            <input type="text" name="Password" class="form-control">
+                            <input type="password" name="Password" class="form-control">
                         </div>
                         <div class="text-center mb-5"><button type="submit" name="Submit">Add</button></div>
                     </form>
