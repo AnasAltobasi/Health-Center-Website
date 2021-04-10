@@ -47,7 +47,7 @@ $result = mysqli_query($conn, $query);
         <section class="dashboard ">
             <div class="container">
                 <div class="section-title text-center mt-0">
-                    <h2 class="mb-5">Orders</h2>
+                    <h2>Orders</h2>
                 </div>
                 <div class="table mb-5">
                     <table class="table table-bordered table-striped">

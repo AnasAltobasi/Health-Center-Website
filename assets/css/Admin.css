@@ -525,6 +525,7 @@ form button[type="submit"]{
     color: #fff;
     background-color: #4eb478;
     border-color: #4eb478;
+    width: 110px !important;
 }
 
 .btn-info:hover{

@@ -39,6 +39,7 @@ if (isset($_POST['remove'])) {
     <link href='assets/css/style.css' rel='stylesheet' />
 </head>
 
+
 <body>
     <!--  Header -->
     <header id='header' class='d-flex align-items-center'>
@@ -92,7 +93,7 @@ if (isset($_POST['remove'])) {
                                 }
                             }
                         }
-                        $All_Item = implode(" ,<br> ", $ItemsName);
+                        $All_Item = implode(" . ,<br> ", $ItemsName);
                     } else {
                         echo '<h5 class="pt-2 text-success text-center" style="font-size: 30px">Cart is Empty</h5>';
                     }
@@ -134,15 +135,13 @@ if (isset($_POST['remove'])) {
                                                     <h5 class="pt-2">' . $ItemName . '</h5>
                                                     <h5 class="pt-2">' . $Price . '</h5>
                                                     <h5 class="pt-2 text-success" style="font-size:15px">HEALTH TOOLS</h5>
-                                                    <button type="submit" class="btn btn-danger mb-3 mt-3 text-center" name="remove">Remove</button>
                                                 </div>
                                                 <div class="col-md-3 py-5">
-                                                    <div>
-                                                     <button type="button" class="btn bg-light border rounded-circle" onclick="decrementValue()"><i class="fas fa-minus"></i></button>
-                                                        <input type="text" id="number" class="form-control w-25 d-inline"  value="1" >
-                                                    <button type="button"  class="btn bg-light border rounded-circle" onclick="incrementValue()"><i class="fas fa-plus"></i></button>
-                                                    </div>
-                                                </div>
+                                                        <div>
+                                                             <input type="text" id="quantity" class="form-control w-25 d-inline text-center" value="1" ><br>
+                                                             <button type="submit" class="btn btn-danger mb-3 mt-3 text-center" name="remove">Remove</button>
+                                                        </div>
+                                       </div>
                                             </div>
                                         </div>
                                     </form>
@@ -202,8 +201,9 @@ if (isset($_POST['remove'])) {
                                 <label class="text-success">Your Email:</label>
                                 <input type="email" name="Email" class="form-control">
                             </div>
-                            <div class="Check_out">
-                                <button type="submit" class="btn btn-success2 mb-4 mt-0" name="CheckOut">Check Out</button>
+                            <div class="Check_out mb-3">
+                                <button type="submit" class="btn btn-success2 mt-0 mr-3" name="CheckOut">Check Out</button>
+                                <a class="btn btn-warning" href="index.php#Tools" role="button">Continue shopping</a>
                             </div>
                         </form>
                     ';
@@ -263,6 +263,7 @@ if (isset($_POST['remove'])) {
     <script src='assets/vendor/owl.carousel/owl.carousel.min.js'></script>
     <!-- Main JS  Files-->
     <script src='assets/js/main.js'></script>
+
 </body>
 
 </html>
