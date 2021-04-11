@@ -22,6 +22,8 @@ if (isset($_POST['Submit'])) {
 
         $InQuery = "INSERT INTO admin (Name,Password) VALUE ('$Username','$Password')";
         $InResult = mysqli_query($conn, $InQuery);
+        echo "<script>alert('Admin has been Addedd...!')</script>";
+        echo "<script>window.location = 'AddAdmin.php'</script>";
     }
 }
 
@@ -30,6 +32,8 @@ if(isset($_GET["ID"]) && isset($_GET["control"])){
         if($_GET["control"]=="remove"){
             $DQuery="DELETE FROM admin WHERE ID='{$ID}'";
             $DResult=mysqli_query($conn,$DQuery);
+            echo "<script>alert('Admin has been Removed...!')</script>";
+            echo "<script>window.location = 'AddAdmin.php'</script>";
         }
 }
 

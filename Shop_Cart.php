@@ -153,7 +153,7 @@ if (isset($_POST['remove'])) {
             </div>
             <div class='col-md-4 offset-md-1 border rounded mt-5 mb-5 bg-white h-25'>
 
-                <div class='pt-4'>
+                <div class='pt-4 mb-4'>
                     <h6>PRICE DETAILS</h6>
                     <hr>
                     <div class='row price-details mb-3'>
