@@ -21,6 +21,24 @@ if (isset($_POST['Submit'])) {
         $result = mysqli_query($conn, $query);
     }
 }
+
+
+$Tools = "SELECT * FROM h_tools";
+
+$AllTools = mysqli_query($conn, $Tools);
+
+
+if(isset($_GET["ID"]) && isset($_GET["control"])){
+    $ID = $_GET["ID"];
+        if($_GET["control"]=="remove"){
+            $DQuery="DELETE FROM h_tools WHERE ID='{$ID}'";
+            $D=mysqli_query($conn,$DQuery);
+            
+            echo "<script>alert('Product has been Removed...!')</script>";
+            echo "<script>window.location = 'AdminProduct.php'</script>";
+        }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,6 +123,32 @@ if (isset($_POST['Submit'])) {
                         </div>
                         <div class="text-center mb-5"><button type="submit" name="Submit">Add</button></div>
                     </form>
+
+
+
+                    <div class="table mt-5">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Item Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Item Type</th>
+                                <th scope="col">Item Image</th>
+                                <th scope="col">Control</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($AllTools) {
+                                while ($row = mysqli_fetch_assoc($AllTools)) {
+                                    echo "<tr><td>" . $row['ID'] . "</td><td>" . $row['ItemName'] . "</td><td>" . $row['Price'] . "</td><td style='text-transform: capitalize'>" . $row['ItemType'] . "</td><td>" .'<img src="data:image/jpeg;base64,'.base64_encode( $row['Image'] ).'" height="60" width="60" class="img-thumnail"/>'."</td><td style='text-align: center;'>" ."<a href='AdminProduct.php?ID={$row['ID']}&control=remove' class='btn btn-success'>Remove</a>" . "</td></tr>";
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>                
                 </center>
             </div>
         </section>

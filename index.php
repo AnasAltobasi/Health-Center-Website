@@ -227,7 +227,8 @@ if (isset($_POST['add_to_cart'])) {
                             <li><i class="fas fa-info-circle"></i> <a href="#about">&nbsp; About</a></li>
                             <li><i class="fas fa-toolbox"></i> <a href="#Tools">&nbsp; Tools</a></li>
                             <li><i class="fas fa-address-card"></i> <a href="Contact.php"> &nbsp; Contact</a></li>
-                            <li><i class="fas fa-users-cog"></i> <a href="./Admin/AdminLogin.php"> &nbsp; Admin Login</a></li>
+                            <li><i class="fas fa-users-cog"></i> <a href="./Admin/AdminLogin.php"> &nbsp;  Admin Login</a></li>
+                            <li><i class="fas fa-users-cog"></i> <a href="./Admin/Main_AdminLogin.php"> &nbsp;Main  Admin Login</a></li>                        </ul>
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-6 footer-links">

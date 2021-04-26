@@ -120,8 +120,8 @@
                         <ul>
                             <li><i class="fas fa-home"></i><a href="index.php">&nbsp; Home</a></li>
                             <li><i class="fas fa-address-card"></i> <a href="Contact.php"> &nbsp; Contact</a></li>
-                            <li><i class="fas fa-users-cog"></i>    <a href="./Admin/AdminLogin.php"> &nbsp; Admin Login</a></li>
-                        </ul>
+                            <li><i class="fas fa-users-cog"></i> <a href="./Admin/AdminLogin.php"> &nbsp; Admin Login</a></li>
+                            <li><i class="fas fa-users-cog"></i> <a href="./Admin/Main_AdminLogin.php"> &nbsp;Main  Admin Login</a></li>                        </ul>
                     </div>
                     <div class="col-lg-6 col-md-6 footer-links">
                         <h4>How can you benefit?</h4>

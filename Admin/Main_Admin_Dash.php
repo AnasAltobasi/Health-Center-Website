@@ -7,16 +7,13 @@ $ContactCount = mysqli_query($conn, $ContactQuery);
 $CContact = mysqli_fetch_assoc($ContactCount);
 
 
+$AdminQuery = "SELECT COUNT(*) as Total FROM admin";
+$AdminCount = mysqli_query($conn, $AdminQuery);
+$CAdmin = mysqli_fetch_assoc($AdminCount);
 
 $OrdersQuery = "SELECT COUNT(*) as Total FROM orders";
 $OrdersCount = mysqli_query($conn, $OrdersQuery);
 $COrders = mysqli_fetch_assoc($OrdersCount);
-
-
-$ToolsQuery = "SELECT COUNT(*) as Total FROM  h_tools";
-$ToolsCount = mysqli_query($conn, $ToolsQuery);
-$CTools = mysqli_fetch_assoc($ToolsCount);
-
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +22,7 @@ $CTools = mysqli_fetch_assoc($ToolsCount);
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Profile</title>
+    <title>Admin Profile</title>
     <!-- CSS Files -->
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
@@ -48,7 +45,6 @@ $CTools = mysqli_fetch_assoc($ToolsCount);
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active" > <a href="AdminProfile.php"><i class="fas fa-home"></i>&nbsp; Dashboard</a></li>
-                    <li><a href="AdminProduct.php"><i class="fas fa-toolbox"></i>&nbsp; Add a Tools</a></li>
                     <li><a href="AdminLogout.php"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a></li>
                 </ul>
             </nav>
@@ -60,7 +56,7 @@ $CTools = mysqli_fetch_assoc($ToolsCount);
         <section id="dashboard" class="dashboard mt-5">
             <div class="container">
                 <div class="row justify-content-center mb-5">
-                    <div class="col-lg-4 col-md-12  mt-4">
+                    <div class="col-lg-4 col-md-12">
                         <div class="info-box">
                             <i class="fas fa-box"></i>
                             <h3>Orders</h3>
@@ -68,21 +64,22 @@ $CTools = mysqli_fetch_assoc($ToolsCount);
                             <center><a href="Orders.php" class="btn-get-started mt-1">Check Its</a></center>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 mt-4">
+
+                    <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+                        <div class="info-box">
+                        <i class="fas fa-plus"></i>
+                            <h3>Numbers of Admin</h3>
+                            <p class="mb-2"><?php echo  $CAdmin['Total'] ?></p>
+                            <center><a href="AddAdmin.php" class="btn-get-started mt-1">Add Admin</a></center>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
                         <div class="info-box">
                             <i class="bx bx-phone-call"></i>
                             <h3>Feed Back</h3>
                             <p class="mb-2"><?php echo  $CContact['Total'] ?></p>
                             <center><a href="AdminFeed.php" class="btn-get-started mt-1">Check Its</a></center>
-                        </div>
-                    </div>
-
-                   <div class="col-lg-4 col-md-12 mt-4">
-                        <div class="info-box">
-                            <i class="fas fa-toolbox"></i>
-                            <h3>Add a Product</h3>
-                            <p class="mb-2"><?php echo  $CTools['Total'] ?></p>
-                            <center><a href="AdminProduct.php" class="btn-get-started mt-1">Add</a></center>
                         </div>
                     </div>
                 </div>
@@ -99,7 +96,7 @@ $CTools = mysqli_fetch_assoc($ToolsCount);
                         <h4>Useful Links</h4>
                         <ul>
                             <li class="active"><a href="AdminProfile.php"><i class="fas fa-home"></i>&nbsp; Dashboard</a></li>
-                            <li><a href="AdminProduct.php"><i class="fas fa-toolbox"></i>&nbsp; Add a Product</a></li>
+                            <li><a href="AddAdmin.php"><i class="fas fa-plus"></i>&nbsp; Add Admin</a></li>
                             <li><a href="Orders.php"><i class="fas fa-box"></i>&nbsp; Orders</a></li>
                             <li><a href="AdminFeed.php"><i class="bx bx-phone-call"></i>&nbsp; Feed Back</a></li>
                             <li><a href="AdminLogout.php"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a></li>

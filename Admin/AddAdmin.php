@@ -7,6 +7,9 @@ $query = "SELECT * FROM admin";
 $result = mysqli_query($conn, $query);
 
 
+$query2 = "SELECT * FROM loc_amdin";
+$result2 = mysqli_query($conn, $query2);
+
 $error = null;
 $check = true;
 
@@ -22,17 +25,53 @@ if (isset($_POST['Submit'])) {
 
         $InQuery = "INSERT INTO admin (Name,Password) VALUE ('$Username','$Password')";
         $InResult = mysqli_query($conn, $InQuery);
-        echo "<script>alert('Admin has been Addedd...!')</script>";
+        echo "<script>alert('Loacl Admin has been Addedd...!')</script>";
         echo "<script>window.location = 'AddAdmin.php'</script>";
     }
 }
 
+
+
+
+if (isset($_POST['SubmitMain'])) {
+
+    $Username = isset($_POST["UsernameMain"]) ? $_POST["UsernameMain"] : "";
+    $Password = isset($_POST["PasswordMain"]) ? $_POST["PasswordMain"] : "";
+
+    if (empty($Username) || empty($Password)) {
+        $error2 = "Please Enter Username And Password";
+        $check2 = false;
+    } elseif ($check) {
+
+        $InQuery = "INSERT INTO loc_amdin (Name,Password) VALUE ('$Username','$Password')";
+        $InResult = mysqli_query($conn, $InQuery);
+        echo "<script>alert('Main Admin has been Addedd...!')</script>";
+        echo "<script>window.location = 'AddAdmin.php'</script>";
+    }
+}
+
+
+
+
 if(isset($_GET["ID"]) && isset($_GET["control"])){
     $ID = $_GET["ID"];
-        if($_GET["control"]=="remove"){
+        if($_GET["control"]=="removeLocal"){
             $DQuery="DELETE FROM admin WHERE ID='{$ID}'";
             $DResult=mysqli_query($conn,$DQuery);
-            echo "<script>alert('Admin has been Removed...!')</script>";
+            
+            echo "<script>alert('Local Admin has been Removed...!')</script>";
+            echo "<script>window.location = 'AddAdmin.php'</script>";
+        }
+}
+
+
+if(isset($_GET["ID"]) && isset($_GET["control"])){
+    $ID2 = $_GET["ID"];
+        if($_GET["control"]=="removeMain"){
+            $DQuery2="DELETE FROM loc_amdin WHERE ID='{$ID2}'";
+            $DResult2=mysqli_query($conn,$DQuery2);
+            
+            echo "<script>alert('Main Admin has been Removed...!')</script>";
             echo "<script>window.location = 'AddAdmin.php'</script>";
         }
 }
@@ -82,8 +121,8 @@ if(isset($_GET["ID"]) && isset($_GET["control"])){
             <div class="container">
             
                 <div class="section-title">
-                    <span>Add New Admin</span>
-                    <h3 class="AdminWelcome mt-4">Add New Admin</h3>
+                    <span>Add New Loacl Admin</span>
+                    <h3 class="AdminWelcome mt-4">Add New Local Admin</h3>
                 </div>
 
                 <center>
@@ -96,15 +135,20 @@ if(isset($_GET["ID"]) && isset($_GET["control"])){
                     ?>
                     <form action="#" class="AdminLoginStyle mb-5" method="post">
                         <div class="form-group text-left">
-                            <label>New Admin Username: </label>
+                            <label>New Loacl Admin Username: </label>
                             <input type="text" name="Username" class="form-control">
                         </div>
                         <div class="form-group text-left">
-                            <label>New Admin Password </label>
+                            <label>New Loacl Admin Password </label>
                             <input type="password" name="Password" class="form-control">
                         </div>
                         <div class="text-center mb-5"><button type="submit" name="Submit">Add</button></div>
                     </form>
+
+                <div class="section-title">
+                    <span>Loacl Admin </span>
+                </div>
+
 
 
                     <div class="table mt-5">
@@ -120,8 +164,67 @@ if(isset($_GET["ID"]) && isset($_GET["control"])){
                         <tbody>
                             <?php
                             if ($result) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<tr><td>" . $row['ID'] . "</td><td>" . $row['Name'] . "</td><td>" . $row['Password'] . "</td><td style='text-align: center;'>" . "<a href='AddAdmin.php?ID={$row['ID']}&control=remove' class='btn btn-success'>Remove</a>" . "</td></tr>";
+                                while ($row2 = mysqli_fetch_assoc($result)) {
+                                    echo "<tr><td>" . $row2['ID'] . "</td><td>" . $row2['Name'] . "</td><td>" . $row2['Password'] . "</td><td style='text-align: center;'>" . "<a href='AddAdmin.php?ID={$row2['ID']}&control=removeLocal' class='btn btn-success'>Remove</a>" . "</td></tr>";
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <div class="section-title">
+                    <span>Add New Main Admin</span>
+                    <h3 class="AdminWelcome mt-4">Add New Local Admin</h3>
+                </div>
+
+
+
+                <center>
+                    <?php
+                if (isset($_POST["SubmitMain"])){
+                    if ($check2 == false) {
+                        echo "<div class='ErrorMessage mb-4'><center>$error2</center></div>";
+                    } elseif (isset($_POST["SubmitMain"])) {
+                        echo "<div class='SuccessMessage mb-4' style='font-size: 30px'><center>New Admin has beed Added Successfully</center></div>";
+                    }
+                }
+                    ?>
+                    <form action="#" class="AdminLoginStyle mb-5" method="post">
+                        <div class="form-group text-left">
+                            <label>New Main Admin Username: </label>
+                            <input type="text" name="UsernameMain" class="form-control">
+                        </div>
+                        <div class="form-group text-left">
+                            <label>New Main Admin Password </label>
+                            <input type="password" name="PasswordMain" class="form-control">
+                        </div>
+                        <div class="text-center mb-5"><button type="submit" name="SubmitMain">Add</button></div>
+                    </form>
+
+
+
+
+                <div class="section-title">
+                    <span>Main Admin </span>
+                </div>
+                <div class="table mt-5">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Main Admin Name</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($result2) {
+                                while ($row = mysqli_fetch_assoc($result2)) {
+                                    echo "<tr><td>" . $row['ID'] . "</td><td>" . $row['Name'] . "</td><td>" . $row['Password'] . "</td><td style='text-align: center;'>" . "<a href='AddAdmin.php?ID={$row['ID']}&control=removeMain' class='btn btn-success'>Remove</a>" . "</td></tr>";
                                 }
                             }
                             ?>
